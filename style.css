@@ -444,7 +444,7 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 }
 
 .popup .top h2 {
-    font-family: "Baloo 2", sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-size: clamp(1rem, 1vw + 1rem, 3rem);
 }
 
@@ -582,6 +582,235 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 
 .popup .carousel .memory.green-state {
     border: 4px solid var(--dark-green);
+}
+
+#about-me {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--light-purple);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: min(1rem, 10%);
+    box-sizing: border-box;
+}
+
+.grid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    perspective: 400px;
+    perspective-origin: 50% 50%;
+    pointer-events: none;
+}
+
+.plane {
+    --tile: 60px;
+    position: absolute;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+
+    background:
+        linear-gradient(rgba(255,255,255,.55) 2px, transparent 2px) 0 0 / var(--tile) var(--tile),
+        linear-gradient(90deg, rgba(255,255,255,.55) 2px, transparent 2px) 0 0 / var(--tile) var(--tile);
+
+    animation: grid-slide 3s linear infinite;
+    z-index: 0;
+}
+
+.floor {
+    top: 50%;
+    transform-origin: top center;
+    transform: rotateX(75deg);
+    mask-image: linear-gradient(to bottom, transparent 0%, var(--dark-purple) 45%);
+}
+
+.top-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    align-self: center;
+}
+
+.top-buttons button {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 5rem;
+    border-radius: 50%;
+    position: relative;
+    transition: 200ms ease-out;
+    cursor: pointer;
+}
+
+.top-buttons button img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 45%;
+}
+
+#abt-me {
+    background-color: var(--light-purple);
+    border: 2px solid var(--dark-purple);
+    box-shadow:
+        inset 0 10px 20px #5b129770,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#abt-me:hover {
+    transform: scale(1.05);
+}
+
+#abt-me:active {
+    transform: scale(0.98);
+}
+
+#interests {
+    background-color: var(--light-yellow);
+    border: 2px solid var(--dark-orange);
+    box-shadow:
+        inset 0 10px 20px #5b3b0060,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#interests:hover {
+    transform: scale(1.05);
+}
+
+#interests:active {
+    transform: scale(0.98);
+}
+
+#favs {
+    background-color: var(--light-pink);
+    border: 2px solid var(--magenta);
+    box-shadow:
+        inset 0 10px 20px #6a002e70,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#favs:hover {
+    transform: scale(1.05);
+}
+
+#favs:active {
+    transform: scale(0.98);
+}
+
+#trip {
+    background-color: var(--light-green);
+    border: 2px solid var(--dark-green);
+    box-shadow:
+        inset 0 10px 20px #07412170,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#trip:hover {
+    transform: scale(1.05);
+}
+
+#trip:active {
+    transform: scale(0.98);
+}
+
+.top-buttons button::after {
+    content: "";
+    position: absolute;
+
+    width: 95%;
+    height: 100%;
+
+    background: linear-gradient(to bottom, #f7f5ff70, transparent);
+
+    top: 3%;
+    left: 2.5%;
+
+    border-radius: 50%;
+}
+
+.top-buttons,
+.abt-me-content {
+    position: relative;
+    z-index: 1;
+}
+
+.abt-me-content {
+    min-height: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.abt-me-content > img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.abt-me-content .text {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 30rem;
+    font-family: "Quicksand", sans-serif;
+    color: var(--blue-grey);
+
+    width: 100%;
+
+    background-color: var(--light-yellow);
+    border: 2px solid var(--dark-orange);
+    box-shadow:
+        inset 0 10px 20px #5b3b0060,
+        inset 0 -10px 20px #f7f5ff70;
+
+    padding: min(2rem, 20%);
+    border-radius: 20px;
+    position: relative;
+}
+
+.abt-me-content .text::after {
+    content: "";
+    position: absolute;
+
+    width: 95%;
+    height: 10%;
+
+    top: 3%;
+    left: 2.5%;
+
+    background: linear-gradient(to bottom, #ffffff70, transparent);
+    border-radius: 15px;
+}
+
+.abt-me-content .top-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .5rem 1.5rem;
+}
+
+.abt-me-content .top-text h1 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(2rem, 4vw + 2rem, 10rem);
+    line-height: 1;
+}
+
+.abt-me-content p {
+    font-size: clamp(1rem, 1vw + 1rem, 5rem);
+}
+
+
+
+@keyframes grid-slide {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 -60px, 0 -60px; }
 }
 
 @keyframes dots-fall {
