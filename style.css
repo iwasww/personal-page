@@ -57,7 +57,7 @@ main #hero {
 
 main #hero {
     position: relative;
-    isolation: isolate; /* keeps the dots layer behind the content, inside #hero */
+    isolation: isolate;
     background: linear-gradient(to bottom, var(--light-grey), var(--light-purple) 60%, var(--lavender));
 }
 
@@ -66,7 +66,7 @@ main #hero::before {
     position: absolute;
     inset: 0;
     z-index: -1;
-    pointer-events: none; /* so it never blocks clicks on your cards */
+    pointer-events: none;
 
     background:
         radial-gradient(rgba(255,255,255,.5) 2px, transparent 2.5px) 0 0 / 20px 20px,
@@ -593,11 +593,20 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     padding: min(1rem, 10%);
     box-sizing: border-box;
+
+    transition: background-color .2s ease-out;
+
+    height: auto;
+    min-height: 100dvh;
 }
+
+#about-me[data-theme="interests"] { background-color: var(--light-yellow); }
+#about-me[data-theme="favs"]      { background-color: var(--light-pink); }
+#about-me[data-theme="trip"]      { background-color: var(--light-green); }
 
 .grid-bg {
     position: absolute;
@@ -744,16 +753,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     align-self: center;
 }
 
-.text img {
-    max-height: 500px;
-    width: auto;
-    object-fit: contain;
-    position: absolute;
-
-    left: -45%;
-    top: -10%;
-}
-
 .text {
     display: flex;
     flex-direction: column;
@@ -788,32 +787,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border-radius: 15px;
 }
 
-.text::after {
-    content: "▼";
-    position: absolute;
-
-    aspect-ratio: 1 / 1;
-    width: 10%;
-    height: auto;
-
-    right: -20%;
-    top: 40%;
-
-    color: var(--blue-grey);
-    background-color: var(--light-yellow);
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: clamp(1rem, 1vw + 1rem, 2rem);
-    
-    transform: rotate(-90deg);
-
-    cursor: pointer;
-}
-
 .top-text {
     display: flex;
     flex-wrap: wrap;
@@ -831,7 +804,362 @@ p {
     font-size: clamp(1rem, 1vw + 1rem, 5rem);
 }
 
+#interests-sec {
+    display: flex;
+    flex-direction: column;
 
+    padding: min(2rem, 20%);
+    box-sizing: border-box;
+    width: min(100%, 55rem);
+
+    border-radius: 20px;
+    background-color: var(--light-purple);
+    border: 2px solid var(--dark-purple);
+    box-shadow:
+        inset 0 10px 20px #5b129770,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#interests-sec::after {
+    content: "";
+    position: absolute;
+
+    width: 96%;
+    height: 10%;
+
+    top: 3%;
+    left: 2%;
+
+    background: linear-gradient(to bottom, #ffffff70, transparent);
+    border-radius: 15px;
+}
+
+#interests-sec h1 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(1rem, 2vw + 1rem, 5rem);
+    color: var(--blue-grey);
+}
+
+#interests-sec .row-of-cards {
+    display: flex;
+    flex-direction: row;
+    gap: min(2rem, 20%);
+
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#interests-sec .row-of-cards div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+}
+
+#interests-sec .row-of-cards div p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, 1vw + .5rem, 2rem);
+    color: var(--blue-grey);
+}
+
+#interests-sec .row-of-cards img {
+    aspect-ratio: 1 / 1;
+    width: 15rem;
+    max-width: 100%; 
+    height: auto;
+    object-fit: cover; 
+
+    border-radius: 15px;
+    border: 5px solid var(--purple);
+}
+
+#favorites-sec {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    padding: min(2rem, 20%);
+    box-sizing: border-box;
+    width: min(100%, 55rem);
+
+    border-radius: 20px;
+    background-color: var(--light-green);
+    border: 2px solid var(--dark-green);
+    box-shadow:
+        inset 0 10px 20px #07412170,
+        inset 0 -10px 20px #f7f5ff70;
+}
+
+#favorites-sec::after {
+    content: "";
+    position: absolute;
+
+    width: 98%;
+    height: 10%;
+
+    top: 3%;
+    left: 1%;
+
+    background: linear-gradient(to bottom, #ffffff70, transparent);
+    border-radius: 15px;
+}
+
+#favorites-sec h1 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(1rem, 2vw + 1rem, 5rem);
+    color: var(--blue-grey);
+}
+
+#favorites-sec .upper-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: min(1em, 10%);
+}
+
+#favorites-sec .upper-buttons button {
+    padding: min(.5rem, 5%);
+
+    font-family: "Quicksand", sans-serif;
+    font-weight: 800;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+
+    border-radius: 50px;
+    border: 2px solid var(--dark-green);
+
+    background-color: var(--light-green);
+    box-shadow:
+        inset 0 2px 10px #07412170,
+        inset 0 -10px 10px #f7f5ff70;
+    
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+#favorites-sec .upper-buttons button:hover {
+    background-color: var(--dark-green);
+    box-shadow:
+        inset 0 2px 10px #07412170,
+        inset 0 -10px 10px #f7f5ff70;
+    border: 2px solid #074121;
+    color: var(--light-grey);
+    transform: scale(1.05);
+}
+
+#favorites-sec .upper-buttons button:active {
+    transform: scale(0.99);
+}
+
+#favorites-sec #fav-art {
+    display: flex;
+    flex-direction: row;
+    gap: min(1.5rem, 15%);
+}
+
+#favorites-sec #fav-art .artist-card {
+    flex: 1 1 10rem;
+    max-width: 15rem;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#favorites-sec #fav-art .artist-card img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3.5px solid var(--dark-green);
+}
+
+#favorites-sec #fav-art .artist-card p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+}
+
+#favorites-sec #fav-song {
+    display: flex;
+    flex-direction: row;
+    gap: min(1.5rem, 15%);
+}
+
+#favorites-sec #fav-song .disc {
+    flex: 1 1 10rem;
+    max-width: 15rem;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#favorites-sec #fav-song .disc div {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 100%;
+    border-radius: 15px;
+    border: 3.5px solid var(--dark-green);
+    background-size: cover;
+
+    padding: min(.5rem, 5%);
+    box-sizing: border-box;
+
+    display: grid;
+    place-items: end start;
+
+    position: relative;
+}
+
+#ultrasound {background-image: url(assets/songs/ultrasound.jpg);}
+#juanes {background-image: url(assets/songs/un\ dia\ normal.jpg);}
+#am {background-image: url(assets/songs/am.jpg);}
+#tbdt {background-image: url(assets/songs/tbdt.jpg);}
+
+#favorites-sec #fav-song .disc div button {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 20%;
+
+    border: 2px solid var(--dark-green);
+    border-radius: 50%;
+
+    background-color: var(--light-green);
+    box-shadow:
+        inset 0 2px 10px #07412170,
+        inset 0 -10px 10px #f7f5ff70;
+
+    color: var(--blue-grey);
+
+    position: relative;
+    cursor: pointer;
+    transition: 200ms ease-out;
+}
+
+#favorites-sec #fav-song .disc div button:hover {
+    transform: scale(1.05);
+}
+
+#favorites-sec #fav-song .disc div button:active {
+    transform: scale(0.99);
+}
+
+#favorites-sec #fav-song .disc p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+    text-align: center;
+}
+
+#fav-movie {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+#fav-movie .movie {
+    flex: 1 1 10rem;
+    max-width: 15rem;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#fav-movie .movie img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3.5px solid var(--dark-green);
+}
+
+#fav-movie .movie img:first-child {
+    object-position: top;
+}
+
+#fav-movie .movie p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+    text-align: center;
+}
+
+#fav-book {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+#fav-book .book {
+    flex: 1 1 10rem;
+    max-width: 15rem;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#fav-book .book img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3.5px solid var(--dark-green);
+}
+
+#neil,
+#annie {
+    object-position: top;
+}
+
+#fav-book .book p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+    text-align: center;
+}
+
+#fav-game {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+#fav-game .game {
+    flex: 1 1 10rem;
+    max-width: 15rem;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#fav-game .game img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3.5px solid var(--dark-green);
+}
+
+#fav-game .game p {
+    font-family: "Quicksand", sans-serif;
+    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    color: var(--blue-grey);
+    text-align: center;
+}
 
 @keyframes grid-slide {
     from { background-position: 0 0, 0 0; }
@@ -841,4 +1169,46 @@ p {
 @keyframes dots-fall {
     from { background-position: 0 0, 10px 10px; }
     to   { background-position: 0 20px, 10px 30px; }
+}
+
+@keyframes disc {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.panel {
+    position: relative;
+    z-index: 1;
+}
+
+.panel:not(.active) {
+    display: none !important;
+}
+
+.panel.active {
+    animation: panel-in .3s ease-out;
+}
+
+@keyframes panel-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.fav-panel:not(.active) {
+    display: none !important;
+}
+
+.fav-panel.active {
+    animation: panel-in .3s ease-out;
+}
+
+#favorites-sec .upper-buttons button.selected {
+    background-color: var(--dark-green);
+    border: 2px solid #074121;
+    color: var(--light-grey);
 }

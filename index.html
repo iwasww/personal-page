@@ -51,23 +51,21 @@
             </div>
 
             <div class="top-buttons">
-                <button id="abt-me">
+                <button id="abt-me" class="selected" data-panel="about-sec">
                     <img src="assets/about-me.svg" alt="icon">
                 </button>
-                <button id="interests">
+                <button id="interests" data-panel="interests-sec">
                     <img src="assets/interests.svg" alt="icon">
                 </button>
-                <button id="favs">
+                <button id="favs" data-panel="favorites-sec">
                     <img src="assets/favorites.svg" alt="icon">
                 </button>
-                <button id="trip">
+                <button id="trip" data-panel="trip-sec">
                     <img src="assets/trip.svg" alt="icon">
                 </button>
             </div>
 
-            <div class="text">
-                    
-                <img src="assets/phone.png" alt="phone">
+            <div class="text panel active" id="about-sec">
 
                     <div class="top-text">
                         <h1>Hik</h1>
@@ -78,6 +76,215 @@
 
                     <p>My name is Hikaru, but most people call me Hik, and Id rather be called by this nickname. Im 15 years old and soon to be 16!! Get to know more about me in the next pages! See ya</p>
 
+                </div>
+
+                <div id="interests-sec" class="panel">
+
+                    <h1>Interests and hobbies</h1>
+
+                    <div class="row-of-cards">
+                        <div>
+                            <img src="assets/hobbies/guitar.png" alt="guitar">
+                            <p>Play the guitar</p>
+                        </div>
+
+                        <div>
+                            <img src="assets/hobbies/collection.png" alt="pants">
+                            <p>Collect stuff</p>
+                        </div>
+
+                        <div>
+                            <img src="assets/hobbies/playlist.png" alt="playlist">
+                            <p>Listen to music</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="favorites-sec" class="panel">
+                    <h1>Favorite...</h1>
+
+                    <div class="upper-buttons">
+
+                        <button class="selected" data-fav="fav-art">
+                            Artists
+                        </button>
+
+                        <button data-fav="fav-song">
+                            Songs
+                        </button>
+
+                        <button data-fav="fav-movie">
+                            Movies/TV shows
+                        </button>
+
+                        <button data-fav="fav-book">
+                            Books
+                        </button>
+
+                        <button data-fav="fav-game">
+                            Games
+                        </button>
+
+                    </div>
+
+                    <div class="fav-art fav-panel active" id="fav-art">
+
+                        <div class="artist-card">
+
+                            <img src="assets/artists/avril.jpg" alt="avril lavigne">
+                            <p>Avril Lavigne</p>
+
+                        </div>
+                        <div class="artist-card">
+
+                            <img src="assets/artists/thenbhd.jpg" alt="the neighbourhood">
+                            <p>The Neighbourhood</p>
+
+                        </div>
+                        <div class="artist-card">
+
+                            <img src="assets/artists/simple plan.jpg" alt="simple plan">
+                            <p>Simple Plan</p>
+
+                        </div>
+                        <div class="artist-card">
+
+                            <img src="assets/artists/britney.jpg" alt="britney spears">
+                            <p>Britney Spears</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="fav-song fav-panel" id="fav-song">
+
+                        <div class="disc">
+
+                            <div id="ultrasound">
+                                <button>▶</button>
+                            </div>
+                            <p>Hula Girl - The Neighbourhood</p>
+
+                        </div>
+                        <div class="disc">
+
+                            <div id="juanes">
+                                <button>▶</button>
+                            </div>
+                            <p>Fotografía - Juanes, Nelly Furtado</p>
+
+                        </div>
+                        <div class="disc">
+
+                            <div id="am">
+                                <button>▶</button>
+                            </div>
+                            <p>Do I Wanna Know? - Arctic Monkeys</p>
+
+                        </div>
+                        <div class="disc">
+
+                            <div id="tbdt">
+                                <button>▶</button>
+                            </div>
+                            <p>One of Those Girls - Avril Lavigne</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="fav-movie fav-panel" id="fav-movie">
+
+                        <div class="movie">
+
+                            <img src="assets/media/aot.jpg" alt="attack on titan">
+                            <p>Attack on Titan</p>
+
+                        </div>
+                        <div class="movie">
+
+                            <img src="assets/media/black-mirror.jpg" alt="black mirror">
+                            <p>Black Mirror</p>
+
+                        </div>
+                        <div class="movie">
+
+                            <img src="assets/media/dark.jpg" alt="dark">
+                            <p>Dark</p>
+
+                        </div>
+                        <div class="movie">
+
+                            <img src="assets/media/dead-end-job.jpg" alt="dead-end job">
+                            <p>Dead-end job</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="fav-book fav-panel" id="fav-book">
+
+                        <div class="book">
+
+                            <img src="assets/books/astrophysics.jpg" alt="astrophysics for young people in a hurry" id="neil">
+                            <p>Atrophysics For Young People in a Hurry</p>
+
+                        </div>
+                        <div class="book">
+
+                            <img src="assets/books/annie.jpg" alt="the taking of annie thorne" id="annie">
+                            <p>The Taking of Annie Thorne</p>
+
+                        </div>
+                        <div class="book">
+
+                            <img src="assets/books/jurassic-park.jpg" alt="jurassic park">
+                            <p>Jurassic Park</p>
+
+                        </div>
+                        <div class="book">
+
+                            <img src="assets/books/frankenstein.png" alt="frankenstein">
+                            <p>Frankenstein</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="fav-game fav-panel" id="fav-game">
+                        
+                        <div class="game">
+
+                            <img src="assets/games/hkia.jpg" alt="hello kitty island adventure">
+                            <p>Hello Kitty Island Adventure</p>
+
+                        </div>
+                        <div class="game">
+
+                            <img src="assets/games/danganronpa.jpg" alt="danganronpa trigger happy havoc">
+                            <p>Danganronpa: Trigger Happy Havoc</p>
+
+                        </div>
+                        <div class="game">
+
+                            <img src="assets/games/mk8.jpg" alt="mario kart 8 deuxe">
+                            <p>Mario Kart 8 Deluxe</p>
+
+                        </div>
+                        <div class="game">
+
+                            <img src="assets/games/overcooked.jpg" alt="overcooked 2">
+                            <p>Overcooked 2</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="trip-sec" class="panel">
+                    
                 </div>
 
         </section>
