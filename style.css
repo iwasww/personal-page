@@ -70,9 +70,6 @@ main section {
     position: relative;
 }
 
-/* =========================================
-   HERO SECTION
-   ========================================= */
 main #hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -303,9 +300,6 @@ main #hero .right .shadow {
     }
 }
 
-/* =========================================
-   HERO STATES (PINK, YELLOW, GREEN)
-   ========================================= */
 /* pink state */
 main #hero.pink-state {
     background:
@@ -456,9 +450,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     transform: scale(0.8);
 }
 
-/* =========================================
-   POPUP MODAL
-   ========================================= */
 .popup-overlay {
     position: fixed;
     inset: 0;
@@ -673,9 +664,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border: 4px solid var(--dark-green);
 }
 
-/* =========================================
-   ABOUT ME SECTION & PANELS
-   ========================================= */
 #about-me {
     position: relative;
     background: var(--light-purple);
@@ -733,7 +721,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     mask-image: linear-gradient(to bottom, transparent 0%, var(--dark-purple) 45%);
 }
 
-/* Top Buttons: fixed position at the top of #about-me regardless of panel height */
 .top-buttons {
     display: flex;
     flex-direction: row;
@@ -853,7 +840,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border-radius: 50%;
 }
 
-/* Common Panel Properties */
 .panel {
     position: relative;
     z-index: 1;
@@ -872,9 +858,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     margin-bottom: auto;
 }
 
-/* =========================================
-   PANEL 1: ABOUT ME (TEXT)
-   ========================================= */
 .text {
     display: flex;
     flex-direction: column;
@@ -936,9 +919,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     line-height: 1.6;
 }
 
-/* =========================================
-   PANEL 2: INTERESTS AND HOBBIES
-   ========================================= */
 #interests-sec {
     display: flex;
     flex-direction: column;
@@ -1020,9 +1000,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     }
 }
 
-/* =========================================
-   PANEL 3: FAVORITES
-   ========================================= */
 #favorites-sec {
     display: flex;
     flex-direction: column;
@@ -1306,9 +1283,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     word-break: break-word;
 }
 
-/* =========================================
-   PANEL 4: TRIP GALLERY
-   ========================================= */
 #trip-sec {
     display: flex;
     flex-direction: column;
@@ -1373,9 +1347,6 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border: 3px solid var(--magenta);
 }
 
-/* =========================================
-   ANIMATIONS & ACTIVE STATES
-   ========================================= */
 @keyframes grid-slide {
     from { background-position: 0 0, 0 0; }
     to   { background-position: 0 -60px, 0 -60px; }
