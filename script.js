@@ -172,3 +172,9 @@ function playSong(button, audio) {
 for (let i = 0; i < playButtons.length; i++) {
     playSong(playButtons[i], songs[i]);
 }
+
+// Bootstrap Tooltips initialization
+if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+}

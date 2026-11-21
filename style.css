@@ -32,7 +32,8 @@
     --black: #120a17;
 }
 
-* {
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -43,22 +44,48 @@ html {
 
 body {
     width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-family: "Quicksand", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    font-family: inherit;
+}
+
+main {
+    width: 100%;
 }
 
 main section {
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    width: 100%;
+    position: relative;
 }
 
+/* =========================================
+   HERO SECTION
+   ========================================= */
 main #hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
-
-main #hero {
+    align-items: center;
+    justify-items: center;
     position: relative;
     isolation: isolate;
     background: linear-gradient(to bottom, var(--light-grey), var(--light-purple) 60%, var(--lavender));
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(2rem, 4vh, 4rem) clamp(1.5rem, 4vw, 4rem);
+    gap: clamp(1.5rem, 3vw, 3rem);
+    box-sizing: border-box;
 }
 
 main #hero::before {
@@ -78,32 +105,41 @@ main #hero::before {
 main #hero .left {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 80vh;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1.5rem, 4vh, 3.5rem);
+    width: 100%;
+    max-width: 36rem;
+    height: auto;
     align-self: center;
 }
 
 main #hero .left h1 {
     color: var(--purple);
-    font-size: clamp(3rem, 5vw + 5rem, 10rem);
+    font-size: clamp(2.5rem, 6.5vw, 6.5rem);
     font-family: "Baloo 2", sans-serif;
-    line-height: 90%;
+    line-height: 0.95;
+    text-align: left;
+    word-break: break-word;
 }
 
 main #hero .left .buttons {
     display: flex;
     flex-direction: column;
-    gap: min(2rem, 20%);
+    gap: clamp(1rem, 2vh, 1.75rem);
+    width: 100%;
+    max-width: 28rem;
+    align-items: flex-start;
 }
 
 main #hero .left .buttons button {
-    width: 40rem;
-    padding: 1rem;
+    width: 100%;
+    max-width: 28rem;
+    padding: clamp(0.75rem, 2vh, 1.25rem) clamp(1rem, 2vw, 2rem);
 
     font-family: "Quicksand", sans-serif;
     font-weight: 900;
-    font-size: clamp(1rem, 1vw + 1rem, 3rem);
+    font-size: clamp(1rem, 1.2vw + 0.6rem, 1.8rem);
     color: var(--blue-grey);
     
     border-radius: 20px;
@@ -123,6 +159,7 @@ main #hero .left .buttons button {
 main #hero .left .buttons button::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 95%;
     height: 20%;
@@ -159,14 +196,17 @@ main #hero .right {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
-
-    padding: 2rem;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 32rem;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 main #hero .right .card-3d {
-    height: 80%;
-    width: 60%;
+    width: 100%;
+    max-width: 26rem;
+    aspect-ratio: 4 / 5;
     background-color: #c7c7c7;
 
     border-radius: 20px;
@@ -177,11 +217,11 @@ main #hero .right .card-3d {
     justify-content: space-between;
     align-items: flex-end;
 
-    padding: min(1rem, 10%);
+    padding: min(1rem, 5%);
     box-sizing: border-box;
 
     background-image: url("assets/rainbow-beard.png");
-    background-position: top;
+    background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;
 
@@ -195,6 +235,8 @@ main #hero .right .card-3d .reaction {
     cursor: pointer;
     border-radius: 10px;
     transition: 200ms ease-out;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 main #hero .right .card-3d .reaction:hover {
@@ -219,7 +261,8 @@ main #hero .right .card-3d .reaction:nth-child(4) {
 
 main #hero .right .shadow {
     width: 70%;
-    height: 5%;
+    max-width: 18rem;
+    height: 1.25rem;
 
     background-color: #1e1e1e20;
 
@@ -230,8 +273,40 @@ main #hero .right .shadow {
     backdrop-filter: blur(5px);
 }
 
-/* states */
-/* purple is default, so pink next */
+@media (max-width: 900px) {
+    main #hero {
+        grid-template-columns: 1fr;
+        padding: clamp(2.5rem, 6vh, 4rem) 1.5rem;
+        gap: 2.5rem;
+    }
+
+    main #hero .left {
+        height: auto;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    main #hero .left h1 {
+        text-align: left;
+    }
+
+    main #hero .left .buttons {
+        align-items: flex-start;
+    }
+
+    main #hero .right {
+        padding: 0;
+    }
+
+    main #hero .right .card-3d {
+        max-width: min(95vw, 26rem);
+    }
+}
+
+/* =========================================
+   HERO STATES (PINK, YELLOW, GREEN)
+   ========================================= */
+/* pink state */
 main #hero.pink-state {
     background:
         linear-gradient(to bottom, var(--light-grey), var(--light-pink) 60%, var(--pink));
@@ -281,7 +356,7 @@ main #hero .right .card-3d .reaction:nth-child(4).pink-state {
     transform: scale(0.8);
 }
 
-/* yellow state*/
+/* yellow state */
 main #hero.yellow-state {
     background:
         linear-gradient(to bottom, var(--light-grey), var(--light-yellow) 60%, var(--yellow));
@@ -321,7 +396,7 @@ main #hero .right .card-3d.yellow-state {
     background-position: center;
 }
 
-main #hero .right .card-3d .reaction:nth-child(2).yellow-state {
+main #hero .right .card-3d .reaction:nth-child(3).yellow-state {
     transform: scale(1.1);
 }
 
@@ -371,7 +446,7 @@ main #hero .right .card-3d.green-state {
     background-position: center;
 }
 
-main #hero .right .card-3d .reaction:nth-child(2).green-state {
+main #hero .right .card-3d .reaction:nth-child(4).green-state {
     transform: scale(1.1);
 }
 
@@ -381,15 +456,20 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     transform: scale(0.8);
 }
 
-/* popup */
+/* =========================================
+   POPUP MODAL
+   ========================================= */
 .popup-overlay {
     position: fixed;
     inset: 0;
     display: grid;
     place-items: center;
     background: rgba(0, 0, 0, .5);
+    z-index: 1000;
+    padding: 1rem;
+    box-sizing: border-box;
 
-    opacity: 1;
+    opacity: 0;
     visibility: hidden;
     transition: opacity .25s, visibility .25s;
 }
@@ -398,8 +478,10 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: min(1.5rem, 15%);
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    box-sizing: border-box;
 
     background-color: var(--light-purple);
     box-shadow:
@@ -408,7 +490,9 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border-radius: 25px;
 
     position: relative;
-    width: clamp(70%, 90vw, 1000px);
+    width: min(92vw, 960px);
+    max-height: 90dvh;
+    overflow-y: auto;
 
     transform: translateY(20px);
     transition: transform .25s;
@@ -417,6 +501,7 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 .popup::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 98%;
     height: 15%;
@@ -432,25 +517,24 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     width: 100%;
 }
 
 .popup .top h1,
 .popup .top h2 {
     margin: 0;
-    line-height: .7;
-    margin-bottom: 2%;
+    line-height: 1;
 }
 
 .popup .top h2 {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, 1vw + 1rem, 3rem);
+    font-size: clamp(1.25rem, 2vw + 0.5rem, 2.5rem);
 }
 
 .popup .top h1 {
     font-family: "Baloo 2", sans-serif;
-    font-size: clamp(1rem, 2vw + .7rem, 5rem);
+    font-size: clamp(1.2rem, 2vw + 0.5rem, 2.2rem);
     font-weight: bolder;
 
     background-color: var(--light-purple);
@@ -460,7 +544,7 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 
     aspect-ratio: 1 / 1;
     height: auto;
-    width: 3rem;
+    width: clamp(2.5rem, 5vw, 3.5rem);
 
     border-radius: 50%;
 
@@ -470,11 +554,13 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 
     position: relative;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .popup .top h1::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 80%;
     height: 75%;
@@ -487,25 +573,21 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 }
 
 .popup .carousel {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.5rem, 1.5vw, 1rem);
     align-items: center;
-    gap: 2%;
-    align-self: stretch;
+    width: 100%;
 }
 
 .popup .carousel .memory {
     aspect-ratio: 4 / 3;
     height: auto;
-    width: 15rem;
+    width: 100%;
     object-fit: cover;
     object-position: center;
 
-    flex: 1 1 0;
     min-width: 0;
-    max-width: 15rem;
-
     border-radius: 15px;
     border: 4px solid var(--dark-purple);
 }
@@ -516,6 +598,13 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 
 .popup .carousel .memory:nth-child(3) {
     object-position: 0 70%;
+}
+
+@media (max-width: 680px) {
+    .popup .carousel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
 }
 
 .popup-overlay.open {
@@ -584,24 +673,28 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border: 4px solid var(--dark-green);
 }
 
+/* =========================================
+   ABOUT ME SECTION & PANELS
+   ========================================= */
 #about-me {
     position: relative;
-    height: 100vh;
-    overflow: hidden;
     background: var(--light-purple);
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 
-    padding: min(1rem, 10%);
+    padding: clamp(1.5rem, 3.5vh, 2.5rem) clamp(1rem, 3vw, 2.5rem);
+    gap: clamp(1rem, 2vh, 1.5rem);
     box-sizing: border-box;
 
     transition: background-color .2s ease-out;
 
-    height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
+    height: auto;
+    width: 100%;
 }
 
 #about-me[data-theme="interests"] { background-color: var(--light-yellow); }
@@ -615,6 +708,7 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     perspective: 400px;
     perspective-origin: 50% 50%;
     pointer-events: none;
+    overflow: hidden;
 }
 
 .plane {
@@ -639,29 +733,44 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     mask-image: linear-gradient(to bottom, transparent 0%, var(--dark-purple) 45%);
 }
 
+/* Top Buttons: fixed position at the top of #about-me regardless of panel height */
 .top-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 30%;
-    align-self: center;
+    gap: clamp(0.75rem, 2.5vw, 2rem);
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
 }
 
 .top-buttons button {
     aspect-ratio: 1 / 1;
     height: auto;
-    width: 5rem;
+    width: clamp(2.75rem, 7vw, 4.75rem);
     border-radius: 50%;
     position: relative;
     transition: 200ms ease-out;
     cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.top-buttons button.selected {
+    transform: scale(1.08);
 }
 
 .top-buttons button img {
     aspect-ratio: 1 / 1;
     height: auto;
     width: 45%;
+    object-fit: contain;
+    pointer-events: none;
 }
 
 #abt-me {
@@ -731,6 +840,7 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 .top-buttons button::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 95%;
     height: 100%;
@@ -743,24 +853,38 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
     border-radius: 50%;
 }
 
-.top-buttons,
-.text {
+/* Common Panel Properties */
+.panel {
     position: relative;
     z-index: 1;
+    width: min(100%, 55rem);
+    max-width: 55rem;
+    margin-inline: auto;
 }
 
-.text {
-    align-self: center;
+.panel:not(.active) {
+    display: none !important;
 }
 
+.panel.active {
+    animation: panel-in .3s ease-out;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* =========================================
+   PANEL 1: ABOUT ME (TEXT)
+   ========================================= */
 .text {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     font-family: "Quicksand", sans-serif;
     color: var(--blue-grey);
 
-    width: 50%;
+    width: min(100%, 55rem);
+    max-width: 50rem;
+    margin-inline: auto;
 
     background-color: var(--light-yellow);
     border: 2px solid var(--dark-orange);
@@ -768,14 +892,16 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
         inset 0 10px 20px #5b3b0060,
         inset 0 -10px 20px #f7f5ff70;
 
-    padding: min(2rem, 20%);
+    padding: clamp(1.25rem, 4vw, 2.5rem);
     border-radius: 20px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .text::before {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 95%;
     height: 10%;
@@ -796,21 +922,33 @@ main #hero .right .card-3d .reaction:nth-child(3).green-state {
 
 .top-text h1 {
     font-family: "Baloo 2", sans-serif;
-    font-size: clamp(2rem, 4vw + 2rem, 10rem);
+    font-size: clamp(2rem, 4vw + 1.5rem, 5rem);
     line-height: 1;
 }
 
-p {
-    font-size: clamp(1rem, 1vw + 1rem, 5rem);
+.top-text p {
+    font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.75rem);
+    font-weight: 700;
 }
 
+.text > p {
+    font-size: clamp(1rem, 1vw + 0.4rem, 1.35rem);
+    line-height: 1.6;
+}
+
+/* =========================================
+   PANEL 2: INTERESTS AND HOBBIES
+   ========================================= */
 #interests-sec {
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
 
-    padding: min(2rem, 20%);
+    padding: clamp(1.25rem, 3.5vw, 2.5rem);
     box-sizing: border-box;
     width: min(100%, 55rem);
+    max-width: 55rem;
+    margin-inline: auto;
 
     border-radius: 20px;
     background-color: var(--light-purple);
@@ -823,6 +961,7 @@ p {
 #interests-sec::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 96%;
     height: 10%;
@@ -836,17 +975,15 @@ p {
 
 #interests-sec h1 {
     font-family: "Baloo 2", sans-serif;
-    font-size: clamp(1rem, 2vw + 1rem, 5rem);
+    font-size: clamp(1.4rem, 2vw + 1rem, 3rem);
     color: var(--blue-grey);
 }
 
 #interests-sec .row-of-cards {
-    display: flex;
-    flex-direction: row;
-    gap: min(2rem, 20%);
-
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    width: 100%;
 }
 
 #interests-sec .row-of-cards div {
@@ -854,19 +991,21 @@ p {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #interests-sec .row-of-cards div p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, 1vw + .5rem, 2rem);
+    font-size: clamp(0.95rem, 1vw + 0.4rem, 1.3rem);
+    font-weight: 700;
     color: var(--blue-grey);
 }
 
 #interests-sec .row-of-cards img {
     aspect-ratio: 1 / 1;
-    width: 15rem;
-    max-width: 100%; 
+    width: 100%;
+    max-width: 14rem;
     height: auto;
     object-fit: cover; 
 
@@ -874,14 +1013,26 @@ p {
     border: 5px solid var(--purple);
 }
 
+@media (max-width: 600px) {
+    #interests-sec .row-of-cards {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* =========================================
+   PANEL 3: FAVORITES
+   ========================================= */
 #favorites-sec {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
-    padding: min(2rem, 20%);
+    padding: clamp(1.25rem, 3.5vw, 2.5rem);
     box-sizing: border-box;
     width: min(100%, 55rem);
+    max-width: 55rem;
+    margin-inline: auto;
 
     border-radius: 20px;
     background-color: var(--light-green);
@@ -894,6 +1045,7 @@ p {
 #favorites-sec::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 98%;
     height: 10%;
@@ -907,22 +1059,24 @@ p {
 
 #favorites-sec h1 {
     font-family: "Baloo 2", sans-serif;
-    font-size: clamp(1rem, 2vw + 1rem, 5rem);
+    font-size: clamp(1.4rem, 2vw + 1rem, 3rem);
     color: var(--blue-grey);
 }
 
 #favorites-sec .upper-buttons {
     display: flex;
     flex-direction: row;
-    gap: min(1em, 10%);
+    flex-wrap: wrap;
+    gap: clamp(0.4rem, 1vw, 0.75rem);
+    justify-content: flex-start;
 }
 
 #favorites-sec .upper-buttons button {
-    padding: min(.5rem, 5%);
+    padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.75rem, 1.5vw, 1.25rem);
 
     font-family: "Quicksand", sans-serif;
     font-weight: 800;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.5rem, 1.2rem);
     color: var(--blue-grey);
 
     border-radius: 50px;
@@ -935,6 +1089,7 @@ p {
     
     cursor: pointer;
     transition: 200ms ease-out;
+    white-space: nowrap;
 }
 
 #favorites-sec .upper-buttons button:hover {
@@ -951,21 +1106,27 @@ p {
     transform: scale(0.99);
 }
 
-#favorites-sec #fav-art {
-    display: flex;
-    flex-direction: row;
-    gap: min(1.5rem, 15%);
+#favorites-sec .fav-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    #favorites-sec .fav-panel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 }
 
 #favorites-sec #fav-art .artist-card {
-    flex: 1 1 10rem;
-    max-width: 15rem;
     min-width: 0;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #favorites-sec #fav-art .artist-card img {
@@ -979,24 +1140,19 @@ p {
 
 #favorites-sec #fav-art .artist-card p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.45rem, 1.15rem);
     color: var(--blue-grey);
-}
-
-#favorites-sec #fav-song {
-    display: flex;
-    flex-direction: row;
-    gap: min(1.5rem, 15%);
+    font-weight: 700;
+    word-break: break-word;
 }
 
 #favorites-sec #fav-song .disc {
-    flex: 1 1 10rem;
-    max-width: 15rem;
     min-width: 0;
-
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #favorites-sec #fav-song .disc div {
@@ -1006,6 +1162,7 @@ p {
     border-radius: 15px;
     border: 3.5px solid var(--dark-green);
     background-size: cover;
+    background-position: center;
 
     padding: min(.5rem, 5%);
     box-sizing: border-box;
@@ -1016,15 +1173,15 @@ p {
     position: relative;
 }
 
-#ultrasound {background-image: url(assets/songs/ultrasound.jpg);}
-#juanes {background-image: url(assets/songs/un\ dia\ normal.jpg);}
-#am {background-image: url(assets/songs/am.jpg);}
-#tbdt {background-image: url(assets/songs/tbdt.jpg);}
+#ultrasound {background-image: url("assets/songs/ultrasound.jpg");}
+#juanes {background-image: url("assets/songs/un dia normal.jpg");}
+#am {background-image: url("assets/songs/am.jpg");}
+#tbdt {background-image: url("assets/songs/tbdt.jpg");}
 
 #favorites-sec #fav-song .disc div button {
     aspect-ratio: 1 / 1;
     height: auto;
-    width: 20%;
+    width: clamp(2rem, 25%, 3rem);
 
     border: 2px solid var(--dark-green);
     border-radius: 50%;
@@ -1035,6 +1192,7 @@ p {
         inset 0 -10px 10px #f7f5ff70;
 
     color: var(--blue-grey);
+    font-size: clamp(0.75rem, 1vw, 1.1rem);
 
     position: relative;
     cursor: pointer;
@@ -1051,25 +1209,20 @@ p {
 
 #favorites-sec #fav-song .disc p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.45rem, 1.15rem);
     color: var(--blue-grey);
+    font-weight: 700;
     text-align: center;
-}
-
-#fav-movie {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+    word-break: break-word;
 }
 
 #fav-movie .movie {
-    flex: 1 1 10rem;
-    max-width: 15rem;
     min-width: 0;
-
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #fav-movie .movie img {
@@ -1087,25 +1240,20 @@ p {
 
 #fav-movie .movie p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.45rem, 1.15rem);
     color: var(--blue-grey);
+    font-weight: 700;
     text-align: center;
-}
-
-#fav-book {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+    word-break: break-word;
 }
 
 #fav-book .book {
-    flex: 1 1 10rem;
-    max-width: 15rem;
     min-width: 0;
-
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #fav-book .book img {
@@ -1124,25 +1272,20 @@ p {
 
 #fav-book .book p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.45rem, 1.15rem);
     color: var(--blue-grey);
+    font-weight: 700;
     text-align: center;
-}
-
-#fav-game {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
+    word-break: break-word;
 }
 
 #fav-game .game {
-    flex: 1 1 10rem;
-    max-width: 15rem;
     min-width: 0;
-
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
 }
 
 #fav-game .game img {
@@ -1156,19 +1299,26 @@ p {
 
 #fav-game .game p {
     font-family: "Quicksand", sans-serif;
-    font-size: clamp(1rem, .5vw + .5rem, 2rem);
+    font-size: clamp(0.85rem, 0.7vw + 0.45rem, 1.15rem);
     color: var(--blue-grey);
+    font-weight: 700;
     text-align: center;
+    word-break: break-word;
 }
 
+/* =========================================
+   PANEL 4: TRIP GALLERY
+   ========================================= */
 #trip-sec {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
-    padding: min(2rem, 20%);
+    padding: clamp(1.25rem, 3.5vw, 2.5rem);
     box-sizing: border-box;
     width: min(100%, 55rem);
+    max-width: 55rem;
+    margin-inline: auto;
 
     border-radius: 20px;
     background-color: var(--light-pink);
@@ -1181,6 +1331,7 @@ p {
 #trip-sec::after {
     content: "";
     position: absolute;
+    pointer-events: none;
 
     width: 98%;
     height: 10%;
@@ -1194,22 +1345,20 @@ p {
 
 #trip-sec h1 {
     font-family: "Baloo 2", sans-serif;
-    font-size: clamp(1rem, 2vw + 1rem, 5rem);
+    font-size: clamp(1.4rem, 2vw + 1rem, 3rem);
     color: var(--blue-grey);
 }
 
 #trip-sec .gallery {
     display: grid;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.4rem, 1.5vw, 1rem);
 
-    max-height: 50vh;
+    max-height: clamp(260px, 45vh, 450px);
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: .5rem;
     overscroll-behavior: contain;
-
-    overflow: auto;
 
     scrollbar-width: thin;
     scrollbar-color: var(--magenta) transparent;
@@ -1220,10 +1369,13 @@ p {
     height: auto;
     width: 100%;
     object-fit: cover;
-    border-radius: 15px;
-    border: 3.5px solid var(--magenta);
+    border-radius: 12px;
+    border: 3px solid var(--magenta);
 }
 
+/* =========================================
+   ANIMATIONS & ACTIVE STATES
+   ========================================= */
 @keyframes grid-slide {
     from { background-position: 0 0, 0 0; }
     to   { background-position: 0 -60px, 0 -60px; }
@@ -1232,19 +1384,6 @@ p {
 @keyframes dots-fall {
     from { background-position: 0 0, 10px 10px; }
     to   { background-position: 0 20px, 10px 30px; }
-}
-
-.panel {
-    position: relative;
-    z-index: 1;
-}
-
-.panel:not(.active) {
-    display: none !important;
-}
-
-.panel.active {
-    animation: panel-in .3s ease-out;
 }
 
 @keyframes panel-in {
